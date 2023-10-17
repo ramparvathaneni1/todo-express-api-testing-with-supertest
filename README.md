@@ -83,9 +83,17 @@ The Postgres software runs a little differently in our VM than on a Mac or PC. Y
 
 1. `sudo vi /var/lib/pgsql/data/pg_hba.conf`
 1. Hit `i` to insert into the file.
-1. Copy and paste this: `host    all          all            0.0.0.0/0  md5`
-1. Hit `esc` then `:wq` to write and close the file.
-1. Run `sudo systemctl restart postgresql` to restart the postgresql server.
+1. Copy and paste this: 
+
+    ```bash
+    host                all        postgres   127.0.0.1/32   md5
+    local               all        postgres                  md5
+    host                all        all        0.0.0.0/0      md5
+    host                all        all        localhost      md5
+    ```
+    
+4. Hit `esc` then `:wq` to write and close the file.
+5. Run `sudo systemctl restart postgresql` to restart the postgresql server.
 
 ## Create a sql file to create a table
 
