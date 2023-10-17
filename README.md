@@ -92,6 +92,8 @@ The Postgres software runs a little differently in our VM than on a Mac or PC. Y
     host                all        all        localhost      md5
     ```
     
+    ![](./assets/pg_config.png)
+    
 4. Hit `esc` then `:wq` to write and close the file.
 5. Run `sudo systemctl restart postgresql` to restart the postgresql server.
 
