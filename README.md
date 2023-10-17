@@ -2,7 +2,7 @@
 
 Let's build our own Node/Express API and test it out with Postman. We will use a PostgreSQL datastore and write raw SQL to query the database.
 
-There is a Postman collection in this folder that contains the endpoints we'll build: `Pru_Todo_App.postman_collection.json`
+There is a Postman collection in this folder that contains the endpoints we'll build: `pru_todo_app.postman_collection.json`
 
 ## No Generator
 
