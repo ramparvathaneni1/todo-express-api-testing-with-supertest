@@ -4,11 +4,11 @@ Let's build our own Node/Express API and test it out with Postman. We will use a
 
 There is a Postman collection in this folder that contains the endpoints we'll build: `pru_todo_app.postman_collection.json`
 
-## No Generator
+## Todo App Set-up
 
-1. `mkdir todo-app-no-generator`
+1. `mkdir todo-app`
     - This will create an empty directory for our Node application
-1. `cd todo-app-no-generator`
+1. `cd todo-app`
     - `cd` into the directory we just created
 1. `npm init -y`
     - This will create a `package.json` file to initialize our node application. 
