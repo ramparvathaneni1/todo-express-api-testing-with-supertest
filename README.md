@@ -150,7 +150,7 @@ Add a few more todos based on the `INSERT INTO` example above.
 
 ## GET TODOS
 
-We're gonna create CRUD (Create, Read, Update, Delete) functionality for for todos app. We'll start with Read.
+We're gonna create CRUD (Create, Read, Update, Delete) functionality for the todos app. We'll start with Read.
 
 1. You'll start to see a pattern as we build our routes. First, we'll define an HTTP verb and a method in the `index.js`. The route will accept `request` and `response` as arguments. We'll then write a database sql query inside the body like so:
 
