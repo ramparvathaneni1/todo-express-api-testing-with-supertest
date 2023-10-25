@@ -6,12 +6,19 @@ There is a Postman collection in this folder that contains the endpoints we'll b
 
 ## Todo App Set-up
 
-1. Inside the VM, let's make sure to cd into the Documents folder: `cd Documents`
-1. `mkdir todo-app`
-   - This will create an empty directory for our Node application
+1. In your VM, open your Terminal and change into your Documents folder: `cd ~/Documents`.
+
+1. Fork and clone down your fork of this repo using the SSH URL option: `git clone git@git.generalassemb.ly:<THIS_SHOULD_BE_YOUR_USERNAME>/express-to-do-api.git`.
+
+   - [You can find Fork and Clone instructions here](https://git.generalassemb.ly/ModernEngineering/getting-started-cohort-4-october-2023#fork-and-clone-lessonslabs)
+
+1. `cd` into the `express-to-do-api` folder. Inside it, create a new folder: `mkdir todo-app`
+
 1. `cd todo-app`
-   - `cd` into the directory we just created
-1. `npm init -y`
+
+   - `cd` into the `todo-app` folder you just created
+
+1. Run `npm init -y`.
 
    - This will create a `package.json` file to initialize our node application.
 
