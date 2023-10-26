@@ -36,6 +36,7 @@ There is a Postman collection in this folder that contains the endpoints we'll b
 
 1. `touch index.js` - Running this command will create a file to serve as the entrypoint of our app.
 
+2. Open the `index.js` file in your editor and add the following content:
    ```js
    // imports the express npm module
    const express = require("express");
@@ -73,16 +74,23 @@ There is a Postman collection in this folder that contains the endpoints we'll b
    app.listen("3001", () => {});
    ```
 
-1. In `package.json` let's update the start script to use `nodemon`. This way we don't have to stop and restart the server each time we make a change to our code.
+3. In `package.json` let's update the start script to use `nodemon`. This way we don't have to stop and restart the server each time we make a change to our code.
+
+  ```sh
+  jq '.scripts.start = "nodemon index.js"' package.json > package.json.new
+  mv package.json.new package.json
+  ```
+
+  The `package.json` file should now look like this:
 
    ```js
    "scripts": {
      "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "nodemon index.js" // ADD THIS LINE
+     "start": "nodemon index.js" // NEW LINE YOU JUST ADDED
    },
    ```
 
-1. To start the server, run `npm run start`. Go to `localhost:3001` in the broswer. you should see this:
+4. To start the server, run `npm run start`. Go to `localhost:3001` in the browser. you should see this:
 
    ![](./assets/hi-there.png)
 
