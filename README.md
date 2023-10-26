@@ -1,3 +1,16 @@
+- [TODO Express API App](#todo-express-api-app)
+- [Todo App Set-up](#todo-app-set-up)
+- [Configure Postgres in the VM](#configure-postgres-in-the-vm)
+- [Create a sql file to create a table](#create-a-sql-file-to-create-a-table)
+    - [YOU DO (5 minutes)](#you-do-5-minutes)
+- [Create the todos Database](#create-the-todos-database)
+- [GET TODOS](#get-todos)
+- [CREATE A TODO](#create-a-todo)
+- [GET SINGLE TODO](#get-single-todo)
+- [DELETE TODO](#delete-todo)
+- [UPDATE TODO](#update-todo)
+- [References](#references)
+
 ## TODO Express API App
 
 Let's build our own Node/Express API and test it out with Postman. We will use a PostgreSQL datastore and write raw SQL to query the database.
@@ -7,36 +20,33 @@ There is a Postman collection in this folder that contains the endpoints we'll b
 ## Todo App Set-up
 
 1. In your VM, open your Terminal and change into your Documents folder: `cd ~/Documents`.
-
-1. Fork and clone down your fork of this repo using the SSH URL option: `git clone git@git.generalassemb.ly:<THIS_SHOULD_BE_YOUR_USERNAME>/express-to-do-api.git`.
+2. Fork and clone down your fork of this repo using the SSH URL option: `git clone git@git.generalassemb.ly:<THIS_SHOULD_BE_YOUR_USERNAME>/express-to-do-api.git`.
 
    - [You can find Fork and Clone instructions here](https://git.generalassemb.ly/ModernEngineering/getting-started-cohort-4-october-2023#fork-and-clone-lessonslabs)
-
-1. `cd` into the `express-to-do-api` folder. Inside it, create a new folder: `mkdir todo-app`
-
-1. `cd todo-app`
+3. `cd` into the `express-to-do-api` folder. Inside it, create a new folder: `mkdir todo-app`
+4. `cd todo-app`
 
    - `cd` into the `todo-app` folder you just created
 
-1. Run `npm init -y`.
+5. Run `npm init -y`.
 
    - This will create a `package.json` file to initialize our node application.
 
      > `package.json` is a JSON file that lives in the root directory of your project. Your `package.json` holds important information about the project. It contains human-readable metadata about the project (like the project name and description) as well as functional metadata like the package version number and a list of dependencies required by the application.
 
-1. Open the application (so far) in VS Code: `code .`
+6. Open the application (so far) in VS Code: `code .`
 
-1. `npm i cors express pg nodemon`
+7. `npm i cors express pg nodemon`
 
    - This will install a few node packages for us:
-     - `cors` - (helps with potential [cross-origin resource sharing issues](https://www.telerik.com/blogs/all-you-need-to-know-cors-errors#:~:text=CORS%20errors%20happen%20when%20a,by%20the%20server's%20CORS%20configuration.))
+     - `cors` - (helps with potential [cross-origin resource sharing issues](https://www.telerik.com/blogsall-you-need-to-know-cors-errors#:~:text=CORS%20errors%20happen%20when%20a,by%20the%20server's%20CORS%20configuration.))
      - `express` -[Express](https://expressjs.com/) is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
      - `pg` - [This package](https://www.npmjs.com/package/pg) allows us to connect with our Postgres database.
      - `nodemon` - [This will automatically restart](https://www.npmjs.com/package/nodemon) the node application when file changes in the directory are detected.
 
-1. `touch index.js` - Running this command will create a file to serve as the entrypoint of our app.
+8. `touch index.js` - Running this command will create a file to serve as the entrypoint of our app.
 
-2. Open the `index.js` file in your editor and add the following content:
+9. Open the `index.js` file in your editor and add the following content:
    ```js
    // imports the express npm module
    const express = require("express");
@@ -74,7 +84,7 @@ There is a Postman collection in this folder that contains the endpoints we'll b
    app.listen("3001", () => {});
    ```
 
-3. In `package.json` let's update the start script to use `nodemon`. This way we don't have to stop and restart the server each time we make a change to our code.
+10. In `package.json` let's update the start script to use `nodemon`. This way we don't have to stop and restart the server each time we make a change to our code.
 
   ```sh
   jq '.scripts.start = "nodemon index.js"' package.json > package.json.new
@@ -90,7 +100,7 @@ There is a Postman collection in this folder that contains the endpoints we'll b
    },
    ```
 
-4. To start the server, run `npm run start`. Go to `localhost:3001` in the browser. you should see this:
+11. To start the server, run `npm run start`. Go to `localhost:3001` in the browser. you should see this:
 
    ![](./assets/hi-there.png)
 
@@ -99,8 +109,8 @@ There is a Postman collection in this folder that contains the endpoints we'll b
 The Postgres software runs a little differently in our VM than on a Mac or PC. You can read more about that [here](https://devopscube.com/install-configure-postgresql-amazon-linux/).
 
 1. `sudo vi /var/lib/pgsql/data/pg_hba.conf`
-1. Hit `i` to insert into the file.
-1. Copy and paste this:
+2. Hit `i` to insert into the file.
+3. Copy and paste this:
 
    ```bash
    host                all        postgres   127.0.0.1/32   md5
@@ -111,8 +121,8 @@ The Postgres software runs a little differently in our VM than on a Mac or PC. Y
 
    ![](./assets/pg_config.png)
 
-1. Hit `esc` then `:wq` to write and close the file.
-1. Run `sudo systemctl restart postgresql` to restart the postgresql server.
+4. Hit `esc` then `:wq` to write and close the file.
+5. Run `sudo systemctl restart postgresql` to restart the postgresql server.
 
 ## Create a sql file to create a table
 
