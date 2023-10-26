@@ -185,10 +185,10 @@ We're gonna create CRUD (Create, Read, Update, Delete) functionality for the tod
 
    - You can add this route underneath the existing `app.get` method and above the `app.listen` in the `index.js` file.
 
-1. Be sure to test this out in Postman with the provided collection of queries
+1. Be sure to test this out in Postman with the provided collection of queries in this folder: `pru_todo_app.postman_collection.json`.
 
-   - **Instead of cloning the entire repo**... in the root of the app folder, create a new file: `touch pru_todo_app.postman_collection.json`
-   - [Copy and paste the JSON object from here](https://raw.git.generalassemb.ly/ModernEngineering/express-to-do-api/main/pru_todo_app.postman_collection.json?token=AAABLBYP5VHSOCXM3JJKQBLFG4KAG)
+<!--    - **Instead of cloning the entire repo**... in the root of the app folder, create a new file: `touch pru_todo_app.postman_collection.json`
+   - [Copy and paste the JSON object from here](https://raw.git.generalassemb.ly/ModernEngineering/express-to-do-api/main/pru_todo_app.postman_collection.json?token=AAABLBYP5VHSOCXM3JJKQBLFG4KAG) -->
 
 1. When you open Postman, select "Open existing file", and open the collection.
 
