@@ -208,7 +208,7 @@ We're gonna create CRUD (Create, Read, Update, Delete) functionality for the tod
        (error, results) => {
          if (error) throw error;
          console.log(results);
-         response.status(201).send(`Todo added with ID: ${results.rows[0].id}`);
+         response.status(201).json(results.rows[0]);
        }
      );
    });
