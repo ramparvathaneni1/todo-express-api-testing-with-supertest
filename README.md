@@ -19,7 +19,7 @@ There is a Postman collection in this folder that contains the endpoints we'll b
 
 ## Todo App Set-up
 
-1. In your VM, open your Terminal and change into your Documents folder: `cd ~/Documents`.
+1. In your VM, open your Terminal and change into your Documents folder: `cd /home/USERNAME/mef/`.
 2. Fork and clone down your fork of this repo using the SSH URL option: `git clone git@git.generalassemb.ly:<THIS_SHOULD_BE_YOUR_USERNAME>/express-to-do-api.git`.
 
    - [You can find Fork and Clone instructions here](https://git.generalassemb.ly/ModernEngineering/getting-started-cohort-4-october-2023#fork-and-clone-lessonslabs)
