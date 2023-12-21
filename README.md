@@ -19,33 +19,23 @@ There is a Postman collection in this folder that contains the endpoints we'll b
 
 ## Todo App Set-up
 
-1. In your VM, open your Terminal and change into your Documents folder: `cd /home/USERNAME/mef/`.
-2. Fork and clone down your fork of this repo using the SSH URL option: `git clone git@git.generalassemb.ly:<THIS_SHOULD_BE_YOUR_USERNAME>/express-to-do-api.git`.
-
-3. `cd` into the `express-to-do-api` folder. Inside it, create a new folder: `mkdir todo-app`
-4. `cd todo-app`
-
-   - `cd` into the `todo-app` folder you just created
-
-5. Run `npm init -y`.
-
+1. In your VM, open your Terminal and change into your MEF folder: `cd /home/USERNAME/mef/`.
+1. Fork and clone down your fork of this repo using the SSH URL option: `git clone git@git.generalassemb.ly:<THIS_SHOULD_BE_YOUR_USERNAME>/express-to-do-api.git`.
+1. `cd` into the `express-to-do-api` folder.
+1. Inside it, create a new folder: `mkdir todo-app`
+1. `cd todo-app`
+1. Run `npm init -y`.
    - This will create a `package.json` file to initialize our node application.
-
      > `package.json` is a JSON file that lives in the root directory of your project. Your `package.json` holds important information about the project. It contains human-readable metadata about the project (like the project name and description) as well as functional metadata like the package version number and a list of dependencies required by the application.
-
-6. Open the application (so far) in VS Code: `code .`
-
-7. `npm i cors express pg nodemon`
-
+1. `npm i cors express pg nodemon`
    - This will install a few node packages for us:
      - `cors` - (helps with potential [cross-origin resource sharing issues](https://www.telerik.com/blogsall-you-need-to-know-cors-errors#:~:text=CORS%20errors%20happen%20when%20a,by%20the%20server's%20CORS%20configuration.))
      - `express` -[Express](https://expressjs.com/) is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
      - `pg` - [This package](https://www.npmjs.com/package/pg) allows us to connect with our Postgres database.
      - `nodemon` - [This will automatically restart](https://www.npmjs.com/package/nodemon) the node application when file changes in the directory are detected.
-
-8. `touch index.js` - Running this command will create a file to serve as the entrypoint of our app.
-
-9. Open the `index.js` file in your editor and add the following content:
+1. Open the application (so far) in VS Code: `code .`
+1. `touch index.js` - Running this command will create a file to serve as the entrypoint of our app.
+1. Open the `index.js` file in your editor and add the following content:
    ```js
    // imports the express npm module
    const express = require("express");
@@ -123,7 +113,7 @@ The Postgres software runs a little differently in our VM than on a Mac or PC. Y
 4. Hit `esc` then `:wq` to write and close the file.
 5. Run `sudo systemctl restart postgresql` to restart the postgresql server.
 
-## Create a sql file to create a table
+## Create a SQL file to create a table
 
 There are several ways to create a database, a table, and seed it with some starter Todos. To make things simple, we'll create a `sql` file then run it to accomplish these objectives.
 
@@ -148,28 +138,39 @@ There are several ways to create a database, a table, and seed it with some star
 
 Add a few more todos based on the `INSERT INTO` example above.
 
-## Create the todos Database
+## Create the todo_app_db Database
 
 1. Let's create the database. You can run this from anywhere on the command line since it's global: `createdb todo_app_db -U postgres`
 
    - Note - If you're asked, the default password for the `postgres` user is `postgres`
 
-1. Run the sql file to create the table and add 2 todos: `psql -U postgres -d todo_app_db < db/todo.sql`
+1. Run the SQL file to create the table and add 2 todos: `psql -U postgres -d todo_app_db < db/todo.sql`
 
-   - This command will run the `todo.sql` inside the `todo_app_db` we just created. **Make sure** you're in the root directory of the app when you run this command, otherwise the `db/todo.sql` will need to be altered.
-   - Note - If you're asked, the default password for the `-U postgres` user is `postgres`
+   - This command will run the `todo.sql` inside the `todo_app_db` we just created. **Make sure** you're in the `todo-app` directory when you run this command.
+   - Note: If you're asked, the default password for the `-U postgres` user is `postgres`.
 
-1. To confirm this, we can check the `todo_app_db` database from inside the `psql` shell: `psql -d todo_app_db -U postgres`
+1. To confirm the database and table are created, we can check the `todo_app_db` database from inside the `psql` shell: `psql -d todo_app_db -U postgres`
 
 1. `SELECT * FROM todos;`
 
-   ![](./assets/psql.png)
+You should see this:
+
+```text
+ id |       title       | done | user_id 
+----+-------------------+------+---------
+  1 | Get Milk          | f    |       1
+  2 | Walk Dog          | f    |       2
+(2 rows)
+
+todo_app_db=# 
+
+```
 
 ## GET TODOS
 
 We're gonna create CRUD (Create, Read, Update, Delete) functionality for the todos app. We'll start with Read.
 
-1. You'll start to see a pattern as we build our routes. First, we'll define an HTTP verb and a method in the `index.js`. The route will accept `request` and `response` as arguments. We'll then write a database sql query inside the body like so:
+1. You'll start to see a pattern as we build our routes. First, we'll define an HTTP verb (GET) and a method (app.get) in the `index.js` file. The route will accept `request` and `response` as arguments. We'll then write a database SQL query inside the body like so:
 
    ```js
    app.get("/api/todos", (request, response) => {
@@ -181,21 +182,16 @@ We're gonna create CRUD (Create, Read, Update, Delete) functionality for the tod
      });
    });
    ```
-
    - You can add this route underneath the existing `app.get` method and above the `app.listen` in the `index.js` file.
-
+1. Save the `index.js` file.
 1. Be sure to test this out in Postman with the provided collection of queries in this folder: `pru_todo_app.postman_collection.json`.
-
-<!--    - **Instead of cloning the entire repo**... in the root of the app folder, create a new file: `touch pru_todo_app.postman_collection.json`
-   - [Copy and paste the JSON object from here](https://raw.git.generalassemb.ly/ModernEngineering/express-to-do-api/main/pru_todo_app.postman_collection.json?token=AAABLBYP5VHSOCXM3JJKQBLFG4KAG) -->
-
 1. When you open Postman, select "Open existing file", and open the collection.
 
 ![](./assets/postman-get-todos.png)
 
-## CREATE A TODO
+## CREATE A TODO (POST)
 
-1. In `index.js`, you can add this code below the previous route. _Take a minute to consider what this code is doing._
+1. In `index.js`, you can add this code below the `app.get("/api/todos/")` route. _Take a minute to consider what this code is doing._
 
    ```js
    app.post("/api/todos", (request, response) => {
@@ -212,12 +208,11 @@ We're gonna create CRUD (Create, Read, Update, Delete) functionality for the tod
      );
    });
    ```
-
 1. Be sure to test this out in Postman with the provided collection of queries.
 
 ![](./assets/postman-create-todos.png)
 
-## GET SINGLE TODO
+## GET SINGLE TODO ITEM
 
 1. In `index.js`, you can add this code below the previous route. _Take a minute to consider what this code is doing._
 
@@ -236,7 +231,7 @@ We're gonna create CRUD (Create, Read, Update, Delete) functionality for the tod
 
 ![](./assets/postman-get-single-todo.png)
 
-## DELETE TODO
+## DELETE SINGLE TODO ITEM
 
 1. In `index.js`, you can add this code below the previous route. _Take a minute to consider what this code is doing._
 
@@ -250,12 +245,11 @@ We're gonna create CRUD (Create, Read, Update, Delete) functionality for the tod
      });
    });
    ```
-
-1. Be sure to test this out in Postman with the provided collection of queries. First, delete a todo then get all todos to confirm it's been deleted.
+1. Be sure to test this out in Postman with the provided collection of queries. First, delete a todo item then get all todos to confirm it's been deleted.
 
 ![](./assets/postman-delete-todo.png)
 
-## UPDATE TODO
+## UPDATE TODO ITEM (PUT)
 
 1. In `index.js`, you can add this code below the previous route. _Take a minute to consider what this code is doing._
 
@@ -274,9 +268,7 @@ We're gonna create CRUD (Create, Read, Update, Delete) functionality for the tod
      );
    });
    ```
-
-   - Note - we need to send _both_ the `title` and `done` fields to the database even if we're updating only one. Otherwise, the other field will be updated with `null`. What are some strategies to avoid this? [Check this article.](https://medium.com/developer-rants/conditional-update-in-postgresql-a27ddb5dd35)
-
+   - Note: we need to send _both_ the `title` and `done` fields to the database even if we're updating only one field. Otherwise, the other field will be updated with `null`. What are some other strategies to avoid this? [Check this article.](https://medium.com/developer-rants/conditional-update-in-postgresql-a27ddb5dd35)
 1. Be sure to test this out in Postman with the provided collection of queries.
 
 ![](./assets/postman-update-todo.png)
