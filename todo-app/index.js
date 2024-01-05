@@ -88,4 +88,4 @@ app.put("/api/todos/:id", (request, response) => {
 const server = app.listen("3001", () => {
 });
 
-module.exports = {app, server};
+module.exports = {app, server, pool};
