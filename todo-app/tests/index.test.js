@@ -9,7 +9,13 @@ describe("Test the root path", () => {
     });
 });
 
-// TODO Test
+// TODO Test the CREATE (POST) endpoint
+
+// TODO Test the READ (GET all) endpoint
+
+// TODO Test the READ (GET by ID) endpoint
+
+// TODO Test the DELETE endpoint
 
 afterAll((done) => {
     // Closing the connection allows Jest to exit successfully.
